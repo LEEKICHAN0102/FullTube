@@ -1,0 +1,29 @@
+{
+  "name": "fulltube",
+  "version": "1.0.0",
+  "description": "FullTube",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LEEKICHAN0102/FullTube.git"
+  },
+  "scripts": {
+    "full": "nodemon --exec babel-node src/server.js"
+  },
+  "author": "FULLFEET",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LEEKICHAN0102/FullTube/issues"
+  },
+  "homepage": "https://github.com/LEEKICHAN0102/FullTube#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "nodemon": "^2.0.22"
+  }
+}

@@ -10,8 +10,8 @@ const logger = morgan("dev");
 app.use(logger);
 
 app.use("/", homeRouter);
-app.use("/users", userRouter);
-app.use("/watch", videoRouter);
+app.use("/user", userRouter);
+app.use("/video", videoRouter);
 
 const handleListening = () => {
   console.log("Server Listening to localhost:7777 🔥🔥");

@@ -1,9 +1,9 @@
 export const joinUser = (req, res) => {
-  return res.send("user Join");
+  res.render("watch");
 };
 
 export const loginUser = (req, res) => {
-  return res.send("Logged In");
+  res.render("base");
 };
 
 export const editUser = (req, res) => {

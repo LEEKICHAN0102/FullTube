@@ -1,5 +1,5 @@
 export const mainVideo = (req, res) => {
-  return res.send("main Video");
+  res.render("home");
 };
 
 export const WatchVideo = (req, res) => {

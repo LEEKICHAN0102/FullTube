@@ -1,5 +1,5 @@
 export const joinUser = (req, res) => {
-  return res.send("ss");
+  return res.render("join", { pageTitle: "Join" });
 };
 
 export const loginUser = (req, res) => {

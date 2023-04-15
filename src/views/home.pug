@@ -1,12 +1,8 @@
-extends base.pug
+extends base
+include mixins/video
 
-block content 
-  nav 
-    ul
-      if User.loggedIn
-        li 
-          a(href="/login") Log In
-      else
-        li 
-          a(href="/Log Out") Log Out
-  h1 Home 
+block content
+  each video in videos 
+    +video(video)
+  else 
+    li Video Not exist 

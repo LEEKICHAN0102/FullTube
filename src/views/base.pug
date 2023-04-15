@@ -1,7 +1,21 @@
 doctype html
 html(lang="ko")
   head 
-    title FullTube
+    title #{pageTitle} | FullTube
+    link(rel="stylesheet" href="https://unpkg.com/mvp.css")
   body
-    block content
+    header
+      if fakeUser.loggedIn 
+        small Hello! #{fakeUser.username}
+      h1=pageTitle
+    main
+      nav 
+        ul 
+          if fakeUser.loggedIn
+            li
+              a(href="/logOut") Log Out
+          else    
+            li
+              a(href="/login") Log In
+      block content
 include partials/footer

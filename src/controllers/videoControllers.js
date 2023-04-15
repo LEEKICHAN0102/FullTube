@@ -1,10 +1,10 @@
-const fakeUser = {
-  username: "kichan",
+const User = {
+  username: "kicahn",
   loggedIn: true,
 };
 
 export const mainVideo = (req, res) => {
-  res.render("home", { pageTitle: "Home", fakeUser });
+  res.render("home", { pageTitle: "Home", User });
 };
 
 export const watchVideo = (req, res) => {

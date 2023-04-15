@@ -1,4 +1,12 @@
 extends base.pug
 
 block content 
-  h1 Home
+  nav 
+    ul
+      if User.loggedIn
+        li 
+          a(href="/login") Log In
+      else
+        li 
+          a(href="/Log Out") Log Out
+  h1 Home 

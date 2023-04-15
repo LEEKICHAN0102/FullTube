@@ -1,7 +1,9 @@
-export const joinUser = (req, res) => {};
+export const joinUser = (req, res) => {
+  return res.send("ss");
+};
 
 export const loginUser = (req, res) => {
-  return res.send("login");
+  return res.render("login", { pageTitle: "Login" });
 };
 
 export const editUser = (req, res) => {

@@ -24,10 +24,17 @@ export const homeVideo = (req, res) => {
 export const watchVideo = (req, res) => {
   const { id } = req.params;
   const video = videos[id - 1];
-  return res.render("watch", { pageTitle: `Watching ${video.title}` });
+  return res.render("watch", { pageTitle: `Watching ${video.title}`, video });
 };
 
-export const editVideo = (req, res) => {};
+export const editVideo = (req, res) => {
+  const { id } = req.params;
+  const editVideo = videos[id - 1];
+  return res.render("edit", {
+    pageTitle: `Editing ${editVideo.title}`,
+    editVideo,
+  });
+};
 
 export const deleteVideo = (req, res) => {
   return res.send("Delete Video");

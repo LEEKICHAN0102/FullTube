@@ -3,11 +3,9 @@ html(lang="ko")
   head 
     title #{pageTitle} | FullTube
     link(rel="stylesheet" href="https://unpkg.com/mvp.css")
-  bod
+  body
     header
-      h1=pageTitle 
-      a(href="/login") 로그인
-      a(href="/join") 회원 가입
+      h1=pageTitle
     main 
       block content
 include partials/footer

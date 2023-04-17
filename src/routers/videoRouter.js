@@ -8,7 +8,7 @@ import {
 
 const videoRouter = express.Router();
 
-videoRouter.get("/:id(\\d+)/watch", watchVideo);
+videoRouter.get("/:id(\\d+)", watchVideo);
 videoRouter.get("/:id(\\d+)/edit", editVideo);
 videoRouter.get("/:id(\\d+)/delete", deleteVideo);
 videoRouter.get("/upload", uploadVideo);

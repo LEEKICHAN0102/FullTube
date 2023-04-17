@@ -7,9 +7,9 @@ export const loginUser = (req, res) => {
 };
 
 export const editUser = (req, res) => {
-  return res.send("user Edit");
+  return res.render("edit", { pageTitle: "Edit" });
 };
 
 export const deleteUser = (req, res) => {
-  return res.send("user delete");
+  return res.render("delete", { pageTitle: "Delete" });
 };

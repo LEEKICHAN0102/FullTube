@@ -1,3 +1,5 @@
+import "./db";
+import videoModel from "./models/Video";
 import express from "express";
 import morgan from "morgan";
 import homeRouter from "./routers/homeRouter";

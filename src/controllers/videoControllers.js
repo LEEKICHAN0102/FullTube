@@ -1,5 +1,15 @@
-export const homeVideo = (req, res) => {
-  return res.render("home", { pageTitle: "Home" });
+import videoModel from "../models/Video";
+
+export const homeVideo = async (req, res) => {
+  try {
+    console.log("I Start");
+    const videos = videoModel.find({});
+    console.log("I Finish");
+    console.log(videos);
+    return res.render("home", { pageTitle: "Home", videos: [] });
+  } catch (error) {
+    return res.render("/404", { error });
+  }
 };
 
 export const watchVideo = (req, res) => {

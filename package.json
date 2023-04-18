@@ -8,7 +8,7 @@
     "url": "git+https://github.com/LEEKICHAN0102/FullTube.git"
   },
   "scripts": {
-    "full": "nodemon --exec babel-node src/server.js"
+    "full": "nodemon --exec babel-node src/init.js"
   },
   "author": "FULLFEET",
   "license": "MIT",

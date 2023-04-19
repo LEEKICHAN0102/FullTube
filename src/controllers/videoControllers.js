@@ -1,16 +1,9 @@
 import videoModel from "../models/Video";
 
 export const homeVideo = async (req, res) => {
-  try {
-    console.log("I Start");
-    const videos = videoModel.find({});
-    console.log("I Finish");
-    console.log(videos);
-    return res.render("home", { pageTitle: "Home", videos: [] });
-  } catch (error) {
-    return res.render("/404", { error });
-  }
-};
+  const videos = await videoModel.find({});
+  return res.render("home", { pageTitle: "Home", videos: [] });
+}; // i spend all day's fx coding challenge
 
 export const watchVideo = (req, res) => {
   return res.render("watch", { pageTitle: "Watching" });

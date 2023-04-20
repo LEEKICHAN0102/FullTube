@@ -3,7 +3,7 @@ import videoModel from "../models/Video";
 export const homeVideo = async (req, res) => {
   const videos = await videoModel.find({});
   return res.render("home", { pageTitle: "Home", videos: [] });
-}; // i spend all day's fx coding challenge
+};
 
 export const watchVideo = (req, res) => {
   return res.render("watch", { pageTitle: "Watching" });
@@ -26,6 +26,17 @@ export const getUploadVideo = (req, res) => {
 };
 
 export const postUploadVideo = (req, res) => {
-  const { title } = req.body;
+  const { title, description, hashtags } = req.body;
+  const video = new videoModel({
+    title,
+    description,
+    hashtags: hashtags.split(",").map((word) => `#${word}`),
+    createdAt: Date.now(),
+    meta: {
+      views: 0,
+      rating: 0,
+    },
+  });
+  console.log(video);
   return res.redirect("/");
 };

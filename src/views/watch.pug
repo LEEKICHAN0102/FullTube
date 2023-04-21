@@ -1,5 +1,6 @@
 extends base
 
 block content
-  h3 #{video.views} 회 재생됨
+  p=video.description
+  small=video.createdAt
   a(href=`${video.id}/edit`) 비디오 수정 &rarr;

@@ -9,6 +9,7 @@ import {
 
 const videoRouter = express.Router();
 
+//hexadecimal RegExp
 videoRouter.get("/:id([0-9a-f]{24})", watchVideo);
 videoRouter
   .route("/:id([0-9a-f]{24})/edit")

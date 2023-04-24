@@ -2,9 +2,16 @@ extends base
 include mixins/video
 
 block content
-  a(href="/login") Login
-  a(href="/join") Join
-  a(href="/video/upload") Upload
+  nav 
+    ul 
+      li
+        a(href="/login") Login
+      li
+        a(href="/join") Join
+      li
+        a(href="/video/upload") Upload
+      li 
+        a(href="/search") Search
   each video in videos 
     +video(video)
   else 

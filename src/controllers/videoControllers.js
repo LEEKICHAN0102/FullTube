@@ -33,9 +33,7 @@ export const postEditVideo = async (req, res) => {
   await videoModel.findByIdAndUpdate(id, {
     title,
     description,
-    hashtags: hashtags
-      .split(",")
-      .map((word) => (word.startsWith("#") ? word : `#${word}`)),
+    hashtags: videoModel.formatHashtags(hashtags),
   });
   return res.redirect(`/video/${id}`);
 };
@@ -50,7 +48,7 @@ export const postUploadVideo = async (req, res) => {
     await videoModel.create({
       title,
       description,
-      hashtags,
+      hashtags: videoModel.formatHashtags(hashtags),
     });
     return res.redirect("/");
   } catch (error) {

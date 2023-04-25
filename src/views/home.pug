@@ -5,13 +5,13 @@ block content
   nav 
     ul 
       li
-        a(href="/login") Login
+        a(href="/login") 로그인
       li
-        a(href="/join") Join
+        a(href="/join") 회원 가입
       li
-        a(href="/video/upload") Upload
+        a(href="/video/upload") 영상 업로드
       li 
-        a(href="/search") Search
+        a(href="/search") 검색
   each video in videos 
     +video(video)
   else 

@@ -15,7 +15,7 @@ export const postJoin = async (req, res) => {
     });
   }
   if (exist) {
-    return res.render("join", {
+    return res.status(400).render("join", {
       pageTitle,
       errorMessage: "이미 사용 중인 E-mail 또는 닉네임 입니다.",
     });

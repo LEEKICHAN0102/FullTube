@@ -18,7 +18,7 @@ export const getEditVideo = async (req, res) => {
   const { id } = req.params;
   const video = await videoModel.findById(id);
   if (!video) {
-    return res.render("404", { pageTitle: "404 Error" });
+    return res.status(404).render("404", { pageTitle: "404 Error" });
   }
   return res.render("edit", { pageTitle: `Edit: ${video.title}`, video });
 };
@@ -28,7 +28,7 @@ export const postEditVideo = async (req, res) => {
   const { title, description, hashtags } = req.body;
   const video = await videoModel.findById(id);
   if (!video) {
-    return res.render("404", { pageTitle: "404 Error" });
+    return res.status(404).render("404", { pageTitle: "404 Error" });
   }
   await videoModel.findByIdAndUpdate(id, {
     title,
@@ -53,7 +53,7 @@ export const postUploadVideo = async (req, res) => {
     return res.redirect("/");
   } catch (error) {
     console.log(error);
-    return res.render("upload", {
+    return res.status(400).render("upload", {
       pageTitle: "Upload Video",
       errorMessage: error._message,
     });

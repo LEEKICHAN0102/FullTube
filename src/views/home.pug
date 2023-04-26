@@ -3,11 +3,17 @@ include mixins/video
 
 block content
   nav 
-    ul 
-      li
-        a(href="/login") 로그인
-      li
-        a(href="/join") 회원 가입
+    ul
+      if loggedIn
+        li
+          a(href="/logout") 로그아웃 
+        li  
+          a(href="/profile") #{loggedInUser.username}님 의 프로필 
+      else
+        li
+          a(href="/login") 로그인
+        li
+          a(href="/join") 회원 가입
       li
         a(href="/video/upload") 영상 업로드
       li 

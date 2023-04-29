@@ -144,6 +144,43 @@ export const finishGithubLogin = async (req, res) => {
 };
 //fetch >https://velog.io/@seoltang/fetch-POST-Request
 
+export const startNaverLogin = (req, res) => {
+  const baseURL = "https://nid.naver.com/oauth2.0/authorize";
+  const config = {
+    response_type: "code",
+    client_id: process.env.NV_CLIENT,
+    redirect_uri: "http://localhost:7777/user/naver/finish",
+    state: process.env.NV_STATE,
+  };
+  const params = new URLSearchParams(config).toString();
+  const finalURL = `${baseURL}?${params}`;
+  return res.redirect(finalURL);
+};
+
+export const finishNaverLogin = async (req, res) => {
+  const baseURL = "https://nid.naver.com/oauth2.0/token";
+  const config = {
+    grant_type: "authorization_code",
+    client_id: process.env.NV_CLIENT,
+    client_secret: process.env.NV_SECRET,
+    code: req.query.code,
+    state: process.env.NV_STATE,
+  };
+  const params = new URLSearchParams(config).toString();
+  const finalURL = `${baseURL}?${params}`;
+  const tokenRequest = await (
+    await fetch(finalURL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+    })
+  ).json();
+  if ("token" in tokenRequest) {
+    const { token } = tokenRequest;
+  }
+};
+
 export const logout = (req, res) => {
   req.session.destroy();
   return res.redirect("/");

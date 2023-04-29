@@ -5,6 +5,8 @@ import {
   deleteUser,
   startGithubLogin,
   finishGithubLogin,
+  startNaverLogin,
+  finishNaverLogin,
 } from "../controllers/userControllers";
 
 const userRouter = express.Router();
@@ -14,5 +16,7 @@ userRouter.get("/edit", editUser);
 userRouter.get("/delete", deleteUser);
 userRouter.get("/github/start", startGithubLogin);
 userRouter.get("/github/finish", finishGithubLogin);
+userRouter.get("/naver/start", startNaverLogin);
+userRouter.get("/naver/finish", finishNaverLogin);
 
 export default userRouter;

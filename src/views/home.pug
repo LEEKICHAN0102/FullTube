@@ -6,7 +6,7 @@ block content
     ul
       if loggedIn
         li
-          a(href="/logout") 로그아웃 
+          a(href="/user/logout") 로그아웃 
         li  
           a(href="/profile") #{loggedInUser.username}님 의 프로필 
       else

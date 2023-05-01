@@ -176,8 +176,86 @@ export const finishNaverLogin = async (req, res) => {
       },
     })
   ).json();
-  if ("token" in tokenRequest) {
-    const { token } = tokenRequest;
+  if ("access_token" in tokenRequest) {
+    const { access_token } = tokenRequest;
+    const userData = await (
+      await fetch("https://openapi.naver.com/v1/nid/me", {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      })
+    ).json();
+    console.log(userData);
+    return res.redirect("/login");
+  }
+};
+
+export const startKaKaoLogin = (req, res) => {
+  const baseURL = "https://kauth.kakao.com/oauth/authorize";
+  const config = {
+    client_id: process.env.KK_REST,
+    redirect_uri: "http://localhost:7777/user/kakao/finish",
+    response_type: "code",
+  };
+  const params = new URLSearchParams(config).toString();
+  const finalURL = `${baseURL}?${params}`;
+  return res.redirect(finalURL);
+};
+export const finishKaKaoLogin = async (req, res) => {
+  const baseUrl = "https://kauth.kakao.com/oauth/token";
+  const config = {
+    client_id: process.env.KK_REST,
+    client_secret: process.env.KK_SECRET,
+    grant_type: "authorization_code",
+    redirect_uri: "http://localhost:7777/user/kakao/finish",
+    code: req.query.code,
+  };
+  const params = new URLSearchParams(config).toString();
+  const finalUrl = `${baseUrl}?${params}`;
+  const KaKaoTokenRequest = await (
+    await fetch(finalUrl, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+  ).json();
+  if ("access_token" in KaKaoTokenRequest) {
+    const { access_token } = KaKaoTokenRequest;
+    const userData = await (
+      await fetch("https://kapi.kakao.com/v2/user/me", {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+          "Content-type": "application/json",
+        },
+      })
+    ).json();
+    console.log(userData);
+    const KaKaoAccount = userData.kakao_account;
+    const KaKaoProfile = KaKaoAccount.profile;
+
+    if (
+      KaKaoAccount.is_email_valid === false ||
+      KaKaoAccount.is_email_verified === false
+    ) {
+      return res.redirect("/login");
+    }
+    let user = await userModel.findOne({ email: KaKaoAccount.email });
+    if (!user) {
+      user = await userModel.create({
+        name: KaKaoProfile.nickname,
+        socialOnly: true,
+        username: KaKaoProfile.nickname,
+        email: KaKaoAccount.email,
+        password: "",
+        avatarUrl: KaKaoProfile.profile_image_url,
+      });
+    }
+    req.session.loggedIn = true;
+    req.session.user = user;
+    return res.redirect("/");
+  } else {
+    return res.redirect("/login");
   }
 };
 

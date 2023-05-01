@@ -7,6 +7,8 @@ import {
   finishGithubLogin,
   startNaverLogin,
   finishNaverLogin,
+  startKaKaoLogin,
+  finishKaKaoLogin,
 } from "../controllers/userControllers";
 
 const userRouter = express.Router();
@@ -18,5 +20,7 @@ userRouter.get("/github/start", startGithubLogin);
 userRouter.get("/github/finish", finishGithubLogin);
 userRouter.get("/naver/start", startNaverLogin);
 userRouter.get("/naver/finish", finishNaverLogin);
+userRouter.get("/kakao/start", startKaKaoLogin);
+userRouter.get("/kakao/finish", finishKaKaoLogin);
 
 export default userRouter;

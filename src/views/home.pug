@@ -6,16 +6,16 @@ block content
     ul
       if loggedIn
         li
-          a(href="/user/logout") 로그아웃 
-        li  
-          a(href="/profile") #{loggedInUser.username}님 의 프로필 
+          a(href="/video/upload") 영상 업로드
+        li 
+          a(href="/user/edit-profile") 프로필 수정
+        li
+          a(href="/user/logout") 로그아웃
       else
         li
           a(href="/login") 로그인
         li
           a(href="/join") 회원 가입
-      li
-        a(href="/video/upload") 영상 업로드
       li 
         a(href="/search") 검색
   each video in videos 

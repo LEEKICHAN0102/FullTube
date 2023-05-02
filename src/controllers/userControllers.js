@@ -63,14 +63,6 @@ export const postLogin = async (req, res) => {
   return res.redirect("/");
 };
 
-export const editUser = (req, res) => {
-  return res.render("edit", { pageTitle: "Edit" });
-};
-
-export const deleteUser = (req, res) => {
-  return res.render("delete", { pageTitle: "Delete" });
-};
-
 export const startGithubLogin = (req, res) => {
   const baseURL = "https://github.com/login/oauth/authorize";
   const config = {
@@ -262,4 +254,71 @@ export const finishKaKaoLogin = async (req, res) => {
 export const logout = (req, res) => {
   req.session.destroy();
   return res.redirect("/");
+};
+
+export const getEdit = (req, res) => {
+  return res.render("edit-profile", { pageTitle: "프로필 수정" });
+};
+
+export const postEdit = async (req, res) => {
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { email, username, name },
+    file,
+  } = req;
+  const existUsername = await userModel.findOne({ username });
+  const existUserEmail = await userModel.findOne({ email });
+  if (existUsername.id != _id || existUserEmail.id != _id) {
+    return res.render("edit-Profile", {
+      pageTitle: "프로필 수정",
+      errorMessage: "이미 존재하는 E-mail 또는 닉네임 입니다.",
+    });
+  } else {
+    const updatedUser = await userModel.findByIdAndUpdate(
+      _id,
+      {
+        name,
+        email,
+        username,
+      },
+      { new: true }
+    );
+    req.session.user = updatedUser;
+    return res.redirect("edit-profile");
+  }
+};
+
+export const getChangePassword = (req, res) => {
+  return res.render("change-password", { pageTitle: "비밀번호 변경" });
+};
+export const postChangePassword = async (req, res) => {
+  const {
+    session: {
+      user: { _id, password },
+    },
+    body: { oldPassword, newPassword, newPasswordConfirm },
+  } = req;
+  const user = await userModel.findById(_id);
+  const passwordCheck = await bcrypt.compare(oldPassword, user.password);
+  if (!passwordCheck) {
+    return res.status(400).render("change-password", {
+      pageTitle: "비밀번호 변경",
+      errorMessage: "기존 비밀번호가 일치하지 않습니다",
+    });
+  }
+  if (newPassword !== newPasswordConfirm) {
+    return res.status(400).render("change-password", {
+      pageTitle: "비밀번호 변경",
+      errorMessage: "새로운 비밀번호(확인)가 일치하지 않습니다",
+    });
+  }
+  user.password = newPassword;
+  await user.save();
+  return res.redirect("/user/logout");
+};
+
+export const deleteUser = (req, res) => {
+  return res.render("delete", { pageTitle: "Delete" });
 };

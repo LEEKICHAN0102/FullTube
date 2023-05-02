@@ -225,6 +225,7 @@ export const finishKaKaoLogin = async (req, res) => {
       },
     })
   ).json();
+  console.log(KaKaoTokenRequest);
   if ("access_token" in KaKaoTokenRequest) {
     const { access_token } = KaKaoTokenRequest;
     const userData = await (

@@ -11,6 +11,8 @@ block content
           a(href="/user/edit-profile") 프로필 수정
         li
           a(href="/user/logout") 로그아웃
+        li 
+          a(href="/user/edit-profile") #{loggedInUser.username}님의 프로필
       else
         li
           a(href="/login") 로그인

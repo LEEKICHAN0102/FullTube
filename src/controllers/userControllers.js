@@ -178,6 +178,19 @@ export const finishNaverLogin = async (req, res) => {
       })
     ).json();
     console.log(userData);
+    let user = await userModel.findOne({ email: userData.response.email });
+    if (!user) {
+      user = await userModel.create({
+        avatarUrl: userData.response.profile_image,
+        email: userData.response.email,
+        name: userData.response.name,
+        password: "",
+        socialOnly: true,
+        username: userData.response.nickname,
+      });
+    }
+    req.session.loggedIn = true;
+    req.session.user = user;
     return res.redirect("/login");
   }
 };

@@ -4,7 +4,9 @@ block content
   if errorMessage
     span=errorMessage
   h2 Upload Video
-  form(method="POST")
+  form(method="POST",enctype="multipart/form-data")
+    label(for="video") 업로드 할 MP4 영상
+    input(id="video",type="file",name="video",accept="video/*",required)
     input(name="title",placeholder="title",required,type="text")
     input(name="description",placeholder="Description",required,type="text")
     input(name="hashtags",placeholder="HashTags",required,type="text")

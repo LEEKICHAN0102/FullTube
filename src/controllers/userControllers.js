@@ -183,10 +183,10 @@ export const finishNaverLogin = async (req, res) => {
       user = await userModel.create({
         avatarUrl: userData.response.profile_image,
         email: userData.response.email,
+        username: userData.response.nickname,
         name: userData.response.name,
         password: "",
         socialOnly: true,
-        username: userData.response.nickname,
       });
     }
     req.session.loggedIn = true;
@@ -284,7 +284,7 @@ export const postEdit = async (req, res) => {
   } = req;
   const existUsername = await userModel.findOne({ username });
   const existUserEmail = await userModel.findOne({ email });
-  if (existUsername.id != _id || existUserEmail.id != _id) {
+  if (existUsername._id != _id || existUserEmail._id != _id) {
     return res.render("edit-Profile", {
       pageTitle: "프로필 수정",
       errorMessage: "이미 존재하는 E-mail 또는 닉네임 입니다.",

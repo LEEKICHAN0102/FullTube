@@ -8,7 +8,7 @@ block content
   div 
     a(href=`/user/${video.owner._id}`)
       img(src=video.owner.avatarUrl,width="30px",height="30px")
-  if String(video.owner._id)===loggedInUser._id
+  if String(video.owner._id)===String(loggedInUser._id)
     a(href=`${video.id}/edit`) 비디오 수정 &rarr;
     br
     a(href=`${video.id}/delete`) 비디오 삭제 &rarr;

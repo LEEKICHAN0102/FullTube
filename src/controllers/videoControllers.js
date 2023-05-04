@@ -1,3 +1,4 @@
+import userModel from "../models/User";
 import videoModel from "../models/Video";
 
 export const homeVideo = async (req, res) => {
@@ -7,7 +8,7 @@ export const homeVideo = async (req, res) => {
 
 export const watchVideo = async (req, res) => {
   const { id } = req.params;
-  const video = await videoModel.findById(id);
+  const video = await videoModel.findById(id).populate("owner");
   if (!video) {
     return res.render("404", { pageTitle: "404 Error" });
   }
@@ -43,6 +44,9 @@ export const getUploadVideo = (req, res) => {
 };
 
 export const postUploadVideo = async (req, res) => {
+  const {
+    user: { _id },
+  } = req.session;
   const { path: fileUrl } = req.file;
   const { title, description, hashtags } = req.body;
   try {
@@ -50,6 +54,7 @@ export const postUploadVideo = async (req, res) => {
       title,
       description,
       fileUrl,
+      owner: _id,
       hashtags: videoModel.formatHashtags(hashtags),
     });
     return res.redirect("/");

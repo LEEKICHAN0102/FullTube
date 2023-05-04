@@ -1,0 +1,6 @@
+extends base.pug
+include mixins/video.pug
+
+block content 
+  each video in videos
+    +video(video)

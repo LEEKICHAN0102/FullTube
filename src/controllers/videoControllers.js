@@ -88,6 +88,7 @@ export const deleteVideo = async (req, res) => {
   } = req.session;
   const { id } = req.params;
   const video = await videoModel.findById(id);
+  const user = await userModel.findById(_id);
   if (!video) {
     return res.status(404).render("404", { pageTitle: "404 Error" });
   }
@@ -95,6 +96,8 @@ export const deleteVideo = async (req, res) => {
     return res.status(403).redirect("/");
   }
   await videoModel.findByIdAndDelete(id);
+  user.videos.splice(user.videos.indexOf(id), 1);
+  user.save();
   return res.redirect("/");
 };
 

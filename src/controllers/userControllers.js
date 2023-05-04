@@ -1,5 +1,4 @@
 import userModel from "../models/User";
-import videoModel from "../models/Video";
 import bcrypt from "bcrypt";
 
 export const getJoin = (req, res) => {
@@ -342,15 +341,12 @@ export const deleteUser = (req, res) => {
 
 export const seeUser = async (req, res) => {
   const { id } = req.params;
-  const user = await userModel.findById(id);
+  const user = await userModel.findById(id).populate("videos");
   if (!user) {
     return res.status(404).render("404", { pageTitle: "404 ERROR" });
   }
-  const videos = await videoModel.find({ owner: user._id });
-  console.log(videos);
   return res.render("profile", {
     pageTitle: `${user.username}의 프로필`,
     user,
-    videos,
   });
 };

@@ -16,17 +16,17 @@
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/styles.scss */ \"./src/clients/scss/styles.scss\");\n\n\n//# sourceURL=webpack://fulltube/./src/clients/js/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_screens_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/screens/styles.scss */ \"./src/clients/scss/screens/styles.scss\");\n\n\n//# sourceURL=webpack://fulltube/./src/clients/js/main.js?");
 
 /***/ }),
 
-/***/ "./src/clients/scss/styles.scss":
-/*!**************************************!*\
-  !*** ./src/clients/scss/styles.scss ***!
-  \**************************************/
+/***/ "./src/clients/scss/screens/styles.scss":
+/*!**********************************************!*\
+  !*** ./src/clients/scss/screens/styles.scss ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://fulltube/./src/clients/scss/styles.scss?");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://fulltube/./src/clients/scss/screens/styles.scss?");
 
 /***/ })
 

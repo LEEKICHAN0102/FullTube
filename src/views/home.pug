@@ -2,25 +2,8 @@ extends base
 include mixins/video
 
 block content
-  nav 
-    ul
-      if loggedIn
-        li
-          a(href="/video/upload") 영상 업로드
-        li 
-          a(href="/user/edit-profile") 프로필 수정
-        li
-          a(href="/user/logout") 로그아웃
-        li 
-          a(href=`user/${loggedInUser._id}`) #{loggedInUser.username}님의 프로필
-      else
-        li
-          a(href="/login") 로그인
-        li
-          a(href="/join") 회원 가입
-      li 
-        a(href="/search") 검색
-  each video in videos 
-    +video(video)
-  else 
-    li Video Not exist 
+  div.video-grid
+    each video in videos 
+      +video(video)
+    else 
+      li.empty__message 비디오가 존재하지 않습니다.

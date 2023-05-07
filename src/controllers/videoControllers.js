@@ -2,7 +2,7 @@ import userModel from "../models/User";
 import videoModel from "../models/Video";
 
 export const homeVideo = async (req, res) => {
-  const videos = await videoModel.find({}).sort({ createdAt: "desc" });
+  const videos = await videoModel.find({}).sort({ createdAt: "desc" }).populate("owner");
   return res.render("home", { pageTitle: "Home", videos });
 };
 

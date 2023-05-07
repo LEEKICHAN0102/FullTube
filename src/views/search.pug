@@ -3,8 +3,9 @@ include mixins/video.pug
 
 block content 
   form(method="GET").search__form
-    input(name="keyword",placeholder="Search Video by video name or hashtags",type="text")
-    input(type="submit",value="Search")
+    input(name="keyword",placeholder="제목 혹은 #해시태그로 검색 해보세요!",required,type="text")
+    button
+      i.fas.fa-search
   
   div.video-grid
     each video in videos 

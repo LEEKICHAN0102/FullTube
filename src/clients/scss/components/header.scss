@@ -5,35 +5,26 @@ header {
   align-items: center;
   .header__logo {
     color: $red;
-    font-size: 25px;
-  }
-  .header__name{
-    font-family: "League Gothic",sans-serif;
-    color:white;
-    margin-left: 10px;
-    font-size: 20px;
+    font-size: 38px;
   }
   ul {
-    i{
-      font-size: 20px;
-    }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    li{
+    li {
       margin-left: 30px;
       font-size: 14px;
       font-weight: 600;
+      text-transform: uppercase;
+    }
+    i {
+      font-size: 16px;
     }
   }
-  .header__btn{
+  .header__btn {
     background-color: white;
     color: $bg;
     padding: 5px 10px;
     border-radius: 5px;
-    transition: 0.5s;
-    &:hover{
-      color:darkmagenta;
-    }
   }
 }

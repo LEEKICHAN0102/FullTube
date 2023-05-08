@@ -2,15 +2,7 @@ extends base
 include mixins/video
 
 block content
-  div.side-option
-    nav
-      ul 
-        li 
-          a(href="/user/like") 좋아요를 누른 영상
-        li
-          a(href=`user/${loggedInUser._id}`) 나의 동영상
-        li 
-          a(href="/user/save") 보관함
+  include partials/side-option.pug
   div.video-grid
     each video in videos 
       +video(video)

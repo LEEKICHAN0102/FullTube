@@ -13,8 +13,10 @@ header
           a(href="/user/edit-profile") 프로필 수정
         li
           a(href="/user/logout") 로그아웃
-        li
-          a(href=`user/${loggedInUser._id}`) #{loggedInUser.username}님의 프로필
+        if loggedInUser.socialOnly
+          img(src=user.avatarUrl).avatar
+        else
+          img(src="/" + user.avatarUrl).avatar
       else
         li
           a(href="/login").header__btn 로그인

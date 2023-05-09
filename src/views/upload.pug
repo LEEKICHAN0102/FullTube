@@ -7,7 +7,7 @@ block content
   form(method="POST",enctype="multipart/form-data")
     label(for="video") 업로드 할 MP4 영상
     input(id="video",type="file",name="video",accept="video/*",required)
-    input(name="title",placeholder="title",required,type="text")
-    input(name="description",placeholder="Description",required,type="text")
-    input(name="hashtags",placeholder="HashTags",required,type="text")
+    input(name="title",placeholder="영상 제목",required,type="text")
+    input(name="description",placeholder="영상 설명",required,type="text")
+    input(name="hashtags",placeholder="해시 태그(작성 시 , 표시를 기입해주세요)",required,type="text")
     input(type="submit",value="업로드")

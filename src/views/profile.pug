@@ -3,12 +3,9 @@ include mixins/video.pug
 
 block content 
   div.profile__data
-    img(src="/" + user.avatarUrl).avatar
-  if loggedInUser.socialOnly
-    img(src=user.avatarUrl).avatar
-  else
-    img(src="/" + user.avatarUrl).avatar
-      h3=user.name
+    img(src=`${user.avatarUrl}`).avatar
+    h3=user.username
+  span.span__style=`${user.username}님이 올린 동영상 목록`
   div.video-grid
       each video in user.videos
           +video(video)

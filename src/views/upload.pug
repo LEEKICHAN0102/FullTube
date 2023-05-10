@@ -3,7 +3,6 @@ extends base
 block content 
   if errorMessage
     span=errorMessage
-  h2 Upload Video
   form(method="POST",enctype="multipart/form-data")
     label(for="video") 업로드 할 MP4 영상
     input(id="video",type="file",name="video",accept="video/*",required)

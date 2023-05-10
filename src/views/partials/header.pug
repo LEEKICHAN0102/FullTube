@@ -15,10 +15,10 @@ header
           a(href="/user/logout") 로그아웃
         li
           a(href=`/user/${loggedInUser._id}`)
-              if !loggedInUser.avatarUrl
-                  span 😊
-              else
-                  img.header__avatar(src=`${loggedInUser.avatarUrl}`)
+            if !loggedInUser.avatarUrl
+                img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png",width="25px",height="25px")
+            else
+                img.header__avatar(src=`${loggedInUser.avatarUrl}`)
       else
         li
           a(href="/login").header__btn 로그인

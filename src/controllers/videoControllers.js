@@ -54,7 +54,7 @@ export const postEditVideo = async (req, res) => {
 };
 
 export const getUploadVideo = (req, res) => {
-  return res.render("upload", { pageTitle: "Upload Video" });
+  return res.render("upload", { pageTitle: "영상 업로드" });
 };
 
 export const postUploadVideo = async (req, res) => {
@@ -111,7 +111,7 @@ export const searchVideo = async (req, res) => {
       title: {
         $regex: new RegExp(keyword, "i"),
       },
-  }).populate("owner");
+  });
   }
-  return res.render("search", { pageTitle: "Search Video", videos });
+  return res.render("search", { pageTitle: "검색", videos });
 };

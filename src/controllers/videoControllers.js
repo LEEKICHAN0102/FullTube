@@ -1,3 +1,4 @@
+import commentModel from "../models/Comment";
 import userModel from "../models/User";
 import videoModel from "../models/Video";
 
@@ -10,10 +11,11 @@ export const homeVideo = async (req, res) => {
 
 export const watchVideo = async (req, res) => {
   const { id } = req.params;
-  const video = await videoModel.findById(id).populate("owner");
+  const video = await videoModel.findById(id).populate("owner").populate("comments");
   if (!video) {
     return res.render("404", { pageTitle: "404 Error" });
   }
+  console.log(video);
   return res.render("watch", { pageTitle: video.title, video });
 };
 
@@ -76,7 +78,6 @@ export const postUploadVideo = async (req, res) => {
     user.save();
     return res.redirect("/");
   } catch (error) {
-    console.log(error);
     return res.status(400).render("upload", {
       pageTitle: "Upload Video",
       errorMessage: error._message,
@@ -126,3 +127,25 @@ export const registerView = async (req, res) => {
   await video.save();
   return res.sendStatus(200);
 };
+
+export const createComment=async(req,res)=>{
+  const {
+    session:{user},
+    body:{text},
+    params:{id},
+  }=req;
+
+  const video=await videoModel.findById(id);
+
+  if(!video){
+    return res.sendStatus(404); 
+  }
+  const comment =await commentModel.create({
+    text,
+    owner:user._id,
+    video:id,
+  })
+  video.comments.push(comment._id);
+  video.save();
+  return res.sendStatus(201);
+}

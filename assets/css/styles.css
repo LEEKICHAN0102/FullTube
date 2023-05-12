@@ -272,10 +272,6 @@ input[type=submit],
   margin-top: 20px;
 }
 
-.video__owner-img {
-  border-radius: 50px;
-}
-
 #videoContainer {
   width: 80%;
   position: relative;
@@ -393,6 +389,22 @@ form label {
 }
 .edit-profile__password a {
   text-decoration: underline;
+}
+
+.video__comments {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.video__comments .video__comment {
+  padding: 10px;
+  border-radius: 9999px;
+  background-color: white;
+  color: black;
+  margin-bottom: 10px;
 }
 
 a {

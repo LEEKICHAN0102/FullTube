@@ -19,10 +19,16 @@ block content
             div
                 span#fullScreen
                     i.fas.fa-expand
+    if loggedIn
+        div.video__add-comments
+            form.video__comment-form#commentForm
+                textarea(cols="30",rows="10",placeholder="댓글 추가...")
+                button 확인
     div.video__comments
-        form.video__comment-form#commentForm
-            textarea(cols="30",rows="10",placeholder="댓글 추가...")
-            button 확인
+        ul 
+            each comment in video.comments
+                li.video-comment=comment.text
 block scripts
     script(src="/static/js/videoPlayer.js")
-    script(src="/static/js/commentSection.js")
+    if loggedIn
+        script(src="/static/js/commentSection.js")

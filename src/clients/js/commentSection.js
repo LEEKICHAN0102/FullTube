@@ -1,7 +1,8 @@
 const videoContainer=document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
+const deleteBtn=document.getElementById("delete__comment");
 
-const handleSubmit=(event)=>{
+const handleSubmit=async(event)=>{
   event.preventDefault();
   const textarea=form.querySelector("textarea");
   const text=textarea.value;
@@ -9,7 +10,7 @@ const handleSubmit=(event)=>{
   if(text===""){
     return;
   }
-  fetch(`/api/video/${videoId}/comment`,{
+  await fetch(`/api/video/${videoId}/comment`,{
     method:"POST",
     headers:{
       "Content-Type":"application/json",
@@ -17,7 +18,9 @@ const handleSubmit=(event)=>{
     body:JSON.stringify({text}),
   });
   textarea.value="";
+  window.location.reload();
 };
+
 
 if(form){
   form.addEventListener("submit",handleSubmit);

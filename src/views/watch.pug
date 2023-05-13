@@ -19,10 +19,33 @@ block content
             div
                 span#fullScreen
                     i.fas.fa-expand
-    if loggedIn
+    div.video__user-info
+        h1.video__title=video.title
+        div.video__user-info-head
+            img(src=`${video.owner.avatarUrl}`)
+            h1.video__owner=video.owner.username
+            button 구독 하기
+            button
+                i.fas.fa-thumbs-up
+                span 좋아요 😊
+    if loggedInUser
+        div.video__change
+            button 비디오 수정
+                a(href=`${video.id}/edit`)
+            button 비디오 삭제
+                a(href=`${video.id}/delete`)
+    div.video__user-info__metadata
+        span.views=`조회수 ${video.meta.views}`
+        span.createdAt=video.createdAt
+        div.second__div 
+            span 영상 설명 
+            div.third__div
+                span.description=video.description
+    if loggedInUser
         div.video__add-comments
             form.video__comment-form#commentForm
-                textarea(cols="30",rows="10",placeholder="댓글 추가...")
+                img(src=`${loggedInUser.avatarUrl}`)
+                textarea(cols="126",rows="1",placeholder="댓글 추가...")
                 button 확인
     div.video__comments
         ul 

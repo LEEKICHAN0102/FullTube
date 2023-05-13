@@ -139,7 +139,7 @@ header {
   align-items: center;
 }
 header .header__logo {
-  color: #ff0000;
+  color: #FF0000;
   font-size: 30px;
 }
 header .header__logo .header__name {
@@ -164,7 +164,7 @@ header ul i {
 }
 header .header__btn {
   background-color: white;
-  color: #181818;
+  color: #0C0C0C;
   padding: 5px 10px;
   border-radius: 5px;
 }
@@ -231,7 +231,7 @@ form {
 }
 form:not(.search__form) {
   padding: 30px;
-  background-color: rgba(24, 24, 24, 0.7);
+  background-color: rgba(12, 12, 12, 0.7);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -391,6 +391,72 @@ form label {
   text-decoration: underline;
 }
 
+.video__comment-form {
+  position: absolute;
+}
+.video__comment-form img {
+  margin-top: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+  margin-right: 10px;
+}
+.video__comment-form textarea {
+  outline: none;
+}
+
+.video__comments {
+  position: inherit;
+}
+
+.video__user-info {
+  width: 960px;
+  margin-top: 10px;
+}
+.video__user-info .video__title {
+  font-weight: 600;
+  font-size: large;
+}
+.video__user-info img {
+  margin-top: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+  margin-right: 10px;
+}
+.video__user-info .video__user-info-head {
+  display: flex;
+  align-items: center;
+}
+.video__user-info .video__user-info-head button {
+  text-align: center;
+  margin-left: 20px;
+  border-radius: 50px;
+  background-color: #372E2D;
+  color: white;
+  font-size: large;
+  padding: 10px;
+}
+.video__user-info .video__user-info-head button span {
+  margin-left: 10px;
+}
+
+.video__user-info__metadata {
+  font-size: small;
+  border-radius: 10px;
+  padding: 10px;
+  width: 945px;
+  background-color: #3F3F3F;
+  margin-top: 20px;
+}
+.video__user-info__metadata .second__div {
+  margin-top: 20px;
+}
+.video__user-info__metadata .second__div .third__div {
+  opacity: 0.8;
+  margin-top: 10px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -398,7 +464,7 @@ a {
 
 body {
   font-family: "Roboto", "Arial", sans-serif;
-  background-color: #181818;
+  background-color: #0C0C0C;
   color: white;
 }
 

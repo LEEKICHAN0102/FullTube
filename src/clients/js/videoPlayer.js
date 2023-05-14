@@ -124,9 +124,7 @@ const handleLike=async()=>{
   const {id}=videoContainer.dataset;
   const response=await fetch(`/api/video/${id}/like`,{
     method:"POST",
-    headers:{
-      "Content-Type":"application/json",
-    },
+    headers:{"Content-Type":"application/json"},
   });
   if(response.status==201){
     const {cnt}=await response.json();

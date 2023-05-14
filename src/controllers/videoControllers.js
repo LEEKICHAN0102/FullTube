@@ -31,7 +31,7 @@ export const getEditVideo = async (req, res) => {
   if (String(video.owner) !== String(_id)) {
     return res.status(403).redirect("/");
   }
-  return res.render("edit", { pageTitle: `Edit: ${video.title}`, video });
+  return res.render("edit", { pageTitle: `비디오 수정: ${video.title}`, video });
 };
 
 export const postEditVideo = async (req, res) => {
@@ -149,3 +149,5 @@ export const createComment=async(req,res)=>{
   video.save();
   return res.sendStatus(201);
 };
+
+export const likeVideo=async(req,res)=>{};

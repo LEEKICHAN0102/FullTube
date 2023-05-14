@@ -1,6 +1,5 @@
 const videoContainer=document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
-const deleteBtn=document.getElementById("delete__comment");
 
 const handleSubmit=async(event)=>{
   event.preventDefault();
@@ -20,8 +19,3 @@ const handleSubmit=async(event)=>{
   textarea.value="";
   window.location.reload();
 };
-
-
-if(form){
-  form.addEventListener("submit",handleSubmit);
-}

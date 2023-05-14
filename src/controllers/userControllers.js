@@ -271,7 +271,7 @@ export const logout = (req, res) => {
 };
 
 export const getEdit = (req, res) => {
-  return res.render("edit-profile", { pageTitle: "프로필 수정" });
+  return res.render("edit-profile",{pageTitle:"프로필 수정"});
 };
 
 export const postEdit = async (req, res) => {

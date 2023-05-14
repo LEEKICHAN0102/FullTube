@@ -11,6 +11,8 @@ const fullScreenBtn = document.getElementById("fullScreen");
 const fullScreenIcon = fullScreenBtn.querySelector("i");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
+const subscribeBtn=document.getElementById("videoSubscribe");
+const likeBtn=document.getElementById("videoLike");
 
 
 let controlsTimeout = null;
@@ -113,6 +115,25 @@ const handleEnded = () => {
   });
 };
 
+const likeCounting=(cnt)=>{
+  const likeCount=likeBtn.querySelector("span");
+  likeCount.innerText = `좋아요 ${cnt} 개`;
+}
+
+const handleLike=async()=>{
+  const {id}=videoContainer.dataset;
+  const response=await fetch(`/api/video/${id}/like`,{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+    },
+  });
+  if(response.status==201){
+    const {cnt}=await response.json();
+    likeCounting(cnt);
+  }
+};
+
 playBtn.addEventListener("click",handlePlay);
 muteBtn.addEventListener("click",handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
@@ -123,3 +144,4 @@ timeline.addEventListener("input", handleTimeLineChange);
 fullScreenBtn.addEventListener("click", handleFullScreen);
 video.addEventListener("mousemove", handleMouseMove);
 video.addEventListener("mouseleave", handleMouseLeave);
+likeBtn.addEventListener("click",handleLike);

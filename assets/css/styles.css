@@ -417,6 +417,9 @@ form label {
   font-weight: 600;
   font-size: large;
 }
+.video__user-info .video__change {
+  margin-left: 310px;
+}
 .video__user-info img {
   margin-top: 10px;
   width: 35px;

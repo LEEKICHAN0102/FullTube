@@ -24,11 +24,12 @@ block content
         div.video__user-info-head
             img(src=`${video.owner.avatarUrl}`)
             h1.video__owner=video.owner.username
-            button#videoSubscribe.video__subscribe 구독 하기
-            button#videoLike.video__like
-                i.fas.fa-thumbs-up
-                span 좋아요 #{video.meta.rating.length} 개
-            if loggedInUser._id==video.owner._id
+            if loggedIn
+                button#videoSubscribe.video__subscribe 구독 하기
+                button#videoLike.video__like
+                    i.fas.fa-thumbs-up
+                    span 좋아요 #{video.meta.rating.length}
+            if String(video.owner._id)===String(loggedInUser._id)
                 div.video__change
                     button 비디오 수정
                         a(href=`/${video._id}/edit`)
@@ -41,18 +42,19 @@ block content
             span 영상 설명 
             div.third__div
                 span.description=video.description
-    if loggedInUser
+    if loggedIn
         div.video__add-comments
             form.video__comment-form#commentForm
-                img(src=`${loggedInUser.avatarUrl}`)
-                textarea(cols="126",rows="1",placeholder="댓글 추가...")
-                button 확인
+                textarea(cols="30",rows="10",placeholder="댓글 추가...")
+                button 작성
     div.video__comments
         ul 
-            each comment in video.comments
-                li.video-comment=comment.text
-                li.video-comment__createdAt=comment.createdAt
-                    button.delete__comment ❌ 
+            each comment in video.comments.reverse()
+                li.video__comment
+                    i.fas.fa-comment 
+                    |   #{comment.text}
+                    
+                    
 block scripts
     script(src="/static/js/videoPlayer.js")
     if loggedIn

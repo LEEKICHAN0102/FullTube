@@ -1,21 +1,3 @@
-.video__comment-form{
-  position: absolute;
-  img{
-  margin-top: 10px;
-  width: 35px;
-  height: 35px;
-  border-radius: 50px;
-  margin-right: 10px;
-}
-  textarea{
-    outline: none;
-  }
-}
-
-.video__comments{
-  position: inherit;
-}
-
 .video__user-info{
   width: 960px;
   margin-top: 10px;
@@ -63,5 +45,21 @@
       opacity: 0.8;
       margin-top: 10px;
     }
+  }
+}
+
+.video__comments{
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  width: 100%;
+  margin:0 auto;
+  margin-top: 20px;
+  .video__comment{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    color:black;
+    margin-bottom: 20px;
   }
 }

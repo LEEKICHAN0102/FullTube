@@ -163,18 +163,4 @@ export const deleteComment = async(req,res)=>{
   const comment=await commentModel.findById(id);
   const videoId=await videoModel.findById(video);
   const logInUser=await userModel.findById(user);
-
-  // console.log({commentId, videoId})
-  // console.log({comment: String(comment.id), video: String(videoId.comments)})
-
-  if(String(comment.id)===String(videoId.comments)){
-    const video = await videoModel.findById(videoId);
-    video.comments = undefined;
-    await video.save();
-    console.log('asdf')
-
-    return res.status(200);
-  }
-
-  // return res.status(400);
 };

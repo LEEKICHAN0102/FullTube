@@ -47,7 +47,6 @@ const handleSubmit = async (event) => {
 const handleDelete=async(event)=>{
   const dComment=event.target.parentElement;
   const commentId=dComment.dataset.id;
-  const video = document.querySelector('#videoContainer');
   // console.log(dComment);
   // console.log(commentId);
   const response=await fetch(`/api/video/${commentId}/delete`,{
@@ -55,7 +54,7 @@ const handleDelete=async(event)=>{
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({video: video.dataset.id})
+    body: JSON.stringify({videoContainer:{id}})
   });
   if(response.status===200){
     dComment.remove();

@@ -138,14 +138,43 @@ export const createComment = async (req, res) => {
   if (!video) {
     return res.sendStatus(404);
   }
+  const userComment=await userModel.findById(user);
+  if(!user){
+    return res.sendStatus(404);
+  }
   const comment = await commentModel.create({
     text,
     owner: user._id,
     video: id,
   });
   video.comments.push(comment._id);
-  video.save();
+  await video.save();
+  userComment.comments.push(comment._id);
+  await userComment.save();
   return res.status(201).json({ newCommentId: comment._id });
 };
 
-export const deleteComment=async(req,res)=>{};
+export const deleteComment = async(req,res)=>{
+  const {
+    params:{id},
+    body:{video},
+    session:{user},
+  }=req;
+  const comment=await commentModel.findById(id);
+  const videoId=await videoModel.findById(video);
+  const logInUser=await userModel.findById(user);
+
+  // console.log({commentId, videoId})
+  // console.log({comment: String(comment.id), video: String(videoId.comments)})
+
+  if(String(comment.id)===String(videoId.comments)){
+    const video = await videoModel.findById(videoId);
+    video.comments = undefined;
+    await video.save();
+    console.log('asdf')
+
+    return res.status(200);
+  }
+
+  // return res.status(400);
+};

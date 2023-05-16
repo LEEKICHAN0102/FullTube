@@ -47,18 +47,26 @@ const handleSubmit = async (event) => {
 const handleDelete=async(event)=>{
   const dComment=event.target.parentElement;
   const commentId=dComment.dataset.id;
+  const video = document.querySelector('#videoContainer');
+  // console.log(dComment);
+  // console.log(commentId);
   const response=await fetch(`/api/video/${commentId}/delete`,{
     method:"DELETE",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({video: video.dataset.id})
   });
-  if(response.status===200)
-  dComment.remove();
+  if(response.status===200){
+    dComment.remove();
+  }
 };
 
 if (form) {
   form.addEventListener("submit", handleSubmit);
+}
+
+if(deleteComment){
   deleteComment.forEach((dComment) => {
     dComment.addEventListener("click", handleDelete);
   });

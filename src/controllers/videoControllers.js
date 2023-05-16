@@ -128,24 +128,24 @@ export const registerView = async (req, res) => {
   return res.sendStatus(200);
 };
 
-export const createComment=async(req,res)=>{
+export const createComment = async (req, res) => {
   const {
-    session:{user},
-    body:{text},
-    params:{id},
-  }=req;
-
-  const video=await videoModel.findById(id);
-
-  if(!video){
-    return res.sendStatus(404); 
+    session: { user },
+    body: { text },
+    params: { id },
+  } = req;
+  const video = await videoModel.findById(id);
+  if (!video) {
+    return res.sendStatus(404);
   }
-  const comment =await commentModel.create({
+  const comment = await commentModel.create({
     text,
-    owner:user._id,
-    video:id,
-  })
+    owner: user._id,
+    video: id,
+  });
   video.comments.push(comment._id);
   video.save();
-  return res.sendStatus(201).json({newCommentId:comment._id});
+  return res.status(201).json({ newCommentId: comment._id });
 };
+
+export const deleteComment=async(req,res)=>{};

@@ -154,13 +154,48 @@ export const createComment = async (req, res) => {
   return res.status(201).json({ newCommentId: comment._id });
 };
 
-export const deleteComment = async(req,res)=>{
+export const deleteComment = async (req, res) => {
+  const { id: commentId } = req.params;
+  const comment = await commentModel.findById(commentId);
+  if (!comment) {
+    return res.status(404);
+  }
+  await commentModel.findByIdAndDelete(commentId);
+  return res.sendStatus(200);
+};
+
+export const videoLike=async(req,res)=>{
   const {
+    session:
+    {user:_id},
     params:{id},
-    body:{video},
-    session:{user},
   }=req;
-  const comment=await commentModel.findById(id);
-  const videoId=await videoModel.findById(video);
-  const logInUser=await userModel.findById(user);
+  const video=await videoModel.findById(id);
+  const user=await userModel.findById(_id);
+  if(!video){
+    return res.status(404);
+  }
+  if(!user){
+    return res.status(404);
+  }
+
+  const likeV=await userModel.findOne({likeVideo:id});
+  let likeVC;
+  if(likeV){
+    user.likeVideo.remove(id);
+    await user.save();
+
+    video.meta.rating.remove(_id);
+    await video.save();
+    likeVC=video.meta.rating.length;
+    return res.status(201).json({likeVC});
+  }
+  user.likeVideo.push(id);
+  await user.save();
+  video.meta.rating.push(_id);
+  await video.save();
+
+  likeVC=video.meta.rating.length;
+
+  return res.status(201).json({likeVC});
 };

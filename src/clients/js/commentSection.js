@@ -1,7 +1,7 @@
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
 const deleteComment = document.querySelectorAll(".delete__comment");
-
+const videoLike=document.getElementById("videoLike");
 
 const addComment = (text, id) => {
   const videoComments = document.querySelector(".video__comments ul");
@@ -15,6 +15,8 @@ const addComment = (text, id) => {
   const deleteComment = document.createElement("span");
   deleteComment.className="delete__comment";
   deleteComment.innerText = "❌";
+  deleteComment.addEventListener("click",handleDelete);
+  videoLike.addEventListener("click",handleLike);
   newComment.appendChild(icon);
   newComment.appendChild(span);
   newComment.appendChild(deleteComment);
@@ -54,19 +56,37 @@ const handleDelete=async(event)=>{
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({videoContainer:{id}})
+    body: JSON.stringify({commentId}),
   });
   if(response.status===200){
     dComment.remove();
   }
 };
 
+const likeCounting=(likeCount)=>{
+  const countNumber=videoLike.querySelector("span");
+  countNumber.innerText=`좋아요 ${video.meta.rating.length}`;
+}
+
+const handleLike=async()=>{
+  const videoId=videoContainer.dataset.id;
+  const response=await fetch(`/api/video/${videoId}/like`,{
+    method:"POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+});
+  if(response.status=201){
+    const {likeCount}=await response.json();
+    likeCounting(likeCount);
+  }
+}
+
+
 if (form) {
   form.addEventListener("submit", handleSubmit);
 }
 
-if(deleteComment){
-  deleteComment.forEach((dComment) => {
-    dComment.addEventListener("click", handleDelete);
-  });
-}
+deleteComment.forEach((dComment) => dComment.addEventListener("click", handleDelete));
+
+videoLike.addEventListener("click",handleLike);

@@ -65,7 +65,7 @@ const handleDelete=async(event)=>{
 
 const likeCounting=(likeCount)=>{
   const countNumber=videoLike.querySelector("span");
-  countNumber.innerText=`좋아요 ${video.meta.rating.length}`;
+  countNumber.innerText=`좋아요 ${likeCount}`;
 }
 
 const handleLike=async()=>{

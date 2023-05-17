@@ -180,22 +180,22 @@ export const videoLike=async(req,res)=>{
   }
 
   const likeV=await userModel.findOne({likeVideo:id});
-  let likeVC;
+  let likeCount;
   if(likeV){
-    user.likeVideo.remove(id);
+    user.likeVideo.pull(id);
     await user.save();
 
-    video.meta.rating.remove(_id);
+    video.meta.rating.pull(_id);
     await video.save();
-    likeVC=video.meta.rating.length;
-    return res.status(201).json({likeVC});
+    likeCount=video.meta.rating.length;
+    return res.status(201).json({likeCount});
   }
   user.likeVideo.push(id);
   await user.save();
   video.meta.rating.push(_id);
   await video.save();
 
-  likeVC=video.meta.rating.length;
+  likeCount=video.meta.rating.length;
 
-  return res.status(201).json({likeVC});
+  return res.status(201).json({likeCount});
 };

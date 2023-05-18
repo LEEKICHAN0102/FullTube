@@ -11,6 +11,10 @@ const videoSchema = new mongoose.Schema({
     rating:[{
       type:mongoose.Schema.Types.ObjectId,
       ref:"User",
+    }],
+    subscriber:[{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"User",
     }]
   },
   owner: {

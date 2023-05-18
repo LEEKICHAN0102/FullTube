@@ -2,6 +2,7 @@ const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
 const deleteComment = document.querySelectorAll(".delete__comment");
 const videoLike=document.getElementById("videoLike");
+const subChannel=document.getElementById("videoSubscribe");
 
 const addComment = (text, id) => {
   const videoComments = document.querySelector(".video__comments ul");
@@ -17,6 +18,7 @@ const addComment = (text, id) => {
   deleteComment.innerText = "❌";
   deleteComment.addEventListener("click",handleDelete);
   videoLike.addEventListener("click",handleLike);
+  subChannel.addEventListener("click",handelSubscribe);
   newComment.appendChild(icon);
   newComment.appendChild(span);
   newComment.appendChild(deleteComment);
@@ -82,6 +84,26 @@ const handleLike=async()=>{
   }
 }
 
+const subChecking=(check)=>{
+  const countNumber=subChannel.querySelector("span");
+  if(check){
+    countNumber.innerText=`구독 중`;
+  }
+}
+
+const handelSubscribe=async()=>{
+  const videoId=videoContainer.dataset.id;
+  const response=await fetch(`/api/video/${videoId}/subscribe`,{
+    method:"POST",
+    headers:{
+      "Content-Type": "application/json",
+    },
+  });
+  if(response.status=201){
+    const {check}=await response.json();
+    subChecking(check);
+  }
+}
 
 if (form) {
   form.addEventListener("submit", handleSubmit);
@@ -90,3 +112,5 @@ if (form) {
 deleteComment.forEach((dComment) => dComment.addEventListener("click", handleDelete));
 
 videoLike.addEventListener("click",handleLike);
+
+subChannel.addEventListener("click",handelSubscribe);

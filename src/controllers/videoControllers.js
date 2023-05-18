@@ -199,3 +199,37 @@ export const videoLike=async(req,res)=>{
 
   return res.status(201).json({likeCount});
 };
+
+export const subscribeChannel=async(req,res)=>{
+  const {
+    session:{
+      user:{_id},
+    },
+    params:{id},
+  }=req;
+  const user=await userModel.findById(_id);
+  const video=await videoModel.findById(id);
+  if(!user){
+    return res.status(404);
+  }
+  if(!video){
+    return res.status(404);
+  }
+
+  const userSubChannel=await userModel.findOne({subChannel:id});
+  let check;
+  if(userSubChannel){
+    user.subChannel.pull(id);
+    await user.save();
+
+    video.meta.subscriber.pull(_id);
+    await video.save();
+    return res.status(201).json({check});
+  }
+
+  user.subChannel.push(id);
+  await user.save();
+  video.meta.subscriber.push(_id);
+  await video.save();
+  return res.status(201).json({check});
+};

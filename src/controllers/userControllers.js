@@ -46,14 +46,14 @@ export const postLogin = async (req, res) => {
   const user = await userModel.findOne({ email, socialOnly: false });
   const pageTitle = "로그인";
   if (!user) {
-    res.status(400).render("login", {
+    res.status(400).redirect("login", {
       pageTitle,
       errorMessage: "Email이 일치 하지 않습니다.",
     });
   }
   const ok = await bcrypt.compare(password, user.password);
   if (!ok) {
-    res.status(400).render("login", {
+    res.status(400).redirect("login", {
       pageTitle,
       errorMessage: "비밀번호가 일치 하지 않습니다.",
     });
@@ -317,7 +317,7 @@ export const postChangePassword = async (req, res) => {
     body: { oldPassword, newPassword, newPasswordConfirm },
   } = req;
   const user = await userModel.findById(_id);
-  const passwordCheck = await bcrypt.compare(oldPassword, user.password);
+  const passwordCheck = await bcrypt.compare(oldPassword, password);
   if (!passwordCheck) {
     return res.status(400).render("change-password", {
       pageTitle: "비밀번호 변경",

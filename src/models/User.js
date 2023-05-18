@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
   likeVideo:[{
     type:mongoose.Schema.Types.ObjectId,
     ref:"Video",
+  }],
+  subChannel:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"Video",
   }]
 });
 

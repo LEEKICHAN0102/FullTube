@@ -25,7 +25,8 @@ block content
             img(src=`${video.owner.avatarUrl}`)
             h1.video__owner=video.owner.username
             if loggedIn
-                button#videoSubscribe.video__subscribe 구독 하기
+                button#videoSubscribe.video__subscribe 
+                    span 구독
                 button#videoLike.video__like
                     i.fas.fa-thumbs-up
                     span 좋아요 #{video.meta.rating.length}

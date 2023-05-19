@@ -124,8 +124,23 @@ const handleVideoClick = () => {
 };
 
 const handleKeyDown = (event) => {
-  const { keyCode } = event;
-  if (event.target!==textarea&& keyCode === 32) {
+  const { keyCode } = event;  
+  if (keyCode === 37) {
+    video.currentTime -= 5;
+  } else if (keyCode === 39) {
+    video.currentTime += 5;
+  } else if (keyCode === 38) {
+    event.preventDefault();
+    volumeValue = Math.min(volumeValue + 0.05, 1);
+    video.volume = volumeValue;
+    volumeRange.value = volumeValue;
+  } else if (keyCode === 40) {
+    event.preventDefault();
+    volumeValue = Math.max(volumeValue - 0.05, 0); 
+    video.volume = volumeValue;
+    volumeRange.value = volumeValue;
+  }
+  else if (event.target!==textarea&& keyCode === 32) {
     event.preventDefault();
     handlePlay();
   } else if (keyCode === 77) {

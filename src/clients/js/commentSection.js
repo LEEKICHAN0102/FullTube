@@ -4,22 +4,28 @@ const deleteComment = document.querySelectorAll(".delete__comment");
 const videoLike=document.getElementById("videoLike");
 const subChannel=document.getElementById("videoSubscribe");
 
-const addComment = (text, id) => {
+const addComment = (text, id,owner) => {
   const videoComments = document.querySelector(".video__comments ul");
   const newComment = document.createElement("li");
   newComment.className = "video__comment";
   newComment.dataset.id = id;
+  const userAvatar=document.createElement("img");
+  userAvatar.style.borderRadius="50";
+  userAvatar.width="40";
+  userAvatar.height="40";
+  userAvatar.src = owner;
   const userName = document.createElement("span");
-  userName.innerText = ` ${comment.owner}`;
+  userName.innerText = ` @${owner}`;
   const span = document.createElement("span");
   span.innerText = ` ${text}`;
-  const deleteComment = document.createElement("span");
+  const deleteComment = document.createElement("button");
   deleteComment.className="delete__comment";
   deleteComment.innerText = "삭제";
   deleteComment.addEventListener("click",handleDelete);
   videoLike.addEventListener("click",handleLike);
   subChannel.addEventListener("click",handelSubscribe);
-  newComment.appendChild(icon);
+  newComment.appendChild(userAvatar);
+  newComment.appendChild(userName);
   newComment.appendChild(span);
   newComment.appendChild(deleteComment);
   videoComments.prepend(newComment);
@@ -43,8 +49,8 @@ const handleSubmit = async (event) => {
 
   if (response.status === 201) {
     textarea.value = "";
-    const { newCommentId } = await response.json();
-    addComment(text, newCommentId);
+    const { newCommentId ,owner} = await response.json();
+    addComment(text, newCommentId,owner);
   }
 };
 

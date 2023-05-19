@@ -266,7 +266,7 @@ form input:not(input[type=range])[type=submit]:hover {
 }
 
 #videoContainer {
-  width: 80%;
+  width: 100%;
   position: relative;
 }
 #videoContainer video {
@@ -390,6 +390,30 @@ form input:not(input[type=range])[type=submit]:hover {
   background-color: white;
   color: black;
   margin-bottom: 20px;
+  display: flex;
+}
+.video__comments .video__comment button {
+  margin-left: 20px;
+  padding: 8px 16px;
+  background-color: #FF0000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.video__comments .video__comment button:hover {
+  background-color: #d22d2d;
+}
+.video__comments .video__comment .owner {
+  margin-left: 20px;
+}
+
+span.comment_CNT {
+  margin-left: 0;
+  margin-top: 20px;
+  display: block;
+  font-weight: 400;
 }
 
 .search__form {
@@ -498,6 +522,7 @@ form label {
   border-radius: 10px;
   padding: 10px;
   width: 945px;
+  margin-bottom: 20px;
   background-color: #3F3F3F;
   margin-top: 20px;
 }

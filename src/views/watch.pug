@@ -49,16 +49,17 @@ block content
                 img(src=`${loggedInUser.avatarUrl}`)
                 textarea(width="100%" ,placeholder=`${loggedInUser.username} 님의 댓글`)#textarea
                 button 작성
+    span.comment_CNT 댓글 #{video.comments.length} 개
     div.video__comments
         ul 
             each comment in video.comments.reverse()
                 li.video__comment(data-id=comment.id)
                     div 
-                        img(width="40",height="40", src=`${comment.owner.avatarUrl}`)
-                        span  @#{comment.owner}
+                        img(width="40",height="40", src=`${comment.avatarUrl}`)
+                        span.owner  @#{comment.owner} :
                         span  #{comment.text}
                     if String(comment.owner) === String(loggedInUser._id)
-                        span.delete__comment 삭제
+                        button.delete__comment 삭제
                     
 block scripts
     script(src="/static/js/videoPlayer.js")

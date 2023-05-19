@@ -1,6 +1,5 @@
 .video__add-comments {
   margin-top: 20px;
-
   .video__comment-form {
     margin-left: 0;
     max-width: 945px;
@@ -65,6 +64,29 @@
     background-color: white;
     color: black;
     margin-bottom: 20px;
+    display: flex;
+    button {
+      margin-left: 20px;
+      padding: 8px 16px;
+      background-color: $red;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: #d22d2d;
+      }
+    }
+    .owner{
+      margin-left: 20px;
+    }
   }
 }
 
+span.comment_CNT {
+  margin-left: 0;
+  margin-top: 20px;
+  display: block;
+  font-weight: 400;
+}

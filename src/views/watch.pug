@@ -46,16 +46,19 @@ block content
     if loggedIn
         div.video__add-comments
             form.video__comment-form#commentForm
-                textarea(cols="30",rows="10",placeholder="댓글 추가...")
+                img(src=`${loggedInUser.avatarUrl}`)
+                textarea(width="100%" ,placeholder=`${loggedInUser.username} 님의 댓글`)#textarea
                 button 작성
     div.video__comments
         ul 
             each comment in video.comments.reverse()
                 li.video__comment(data-id=comment.id)
-                    i.fas.fa-comment
-                    span  #{comment.text}
+                    div 
+                        img(width="40",height="40", src=`${comment.owner.avatarUrl}`)
+                        span  @#{comment.owner}
+                        span  #{comment.text}
                     if String(comment.owner) === String(loggedInUser._id)
-                        span.delete__comment ❌
+                        span.delete__comment 삭제
                     
 block scripts
     script(src="/static/js/videoPlayer.js")

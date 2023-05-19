@@ -9,13 +9,13 @@ const addComment = (text, id) => {
   const newComment = document.createElement("li");
   newComment.className = "video__comment";
   newComment.dataset.id = id;
-  const icon = document.createElement("i");
-  icon.className = "fas fa-comment";
+  const userName = document.createElement("span");
+  userName.innerText = ` ${comment.owner}`;
   const span = document.createElement("span");
   span.innerText = ` ${text}`;
   const deleteComment = document.createElement("span");
   deleteComment.className="delete__comment";
-  deleteComment.innerText = "❌";
+  deleteComment.innerText = "삭제";
   deleteComment.addEventListener("click",handleDelete);
   videoLike.addEventListener("click",handleLike);
   subChannel.addEventListener("click",handelSubscribe);

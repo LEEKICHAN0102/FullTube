@@ -13,7 +13,7 @@ const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
 const subscribeBtn=document.getElementById("videoSubscribe");
 const likeBtn=document.getElementById("videoLike");
-
+const textarea=document.getElementById("textarea");
 
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
@@ -36,7 +36,7 @@ const handleMute=()=>{
   } else {
     video.muted = true;
   }
-  muteBtnIcon.innerText = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
+  muteBtnIcon.classList = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
   volumeRange.value = video.muted ? 0 : volumeValue;
 }
 
@@ -98,14 +98,14 @@ const handleMouseMove = () => {
     controlsMovementTimeout = null;
   }
   videoControls.classList.add("showing");
-  controlsMovementTimeout = setTimeout(hideControls, 3000);
+  controlsMovementTimeout = setTimeout(hideControls, 2000);
 };
 
 const handleMouseLeave = () => {
   controlsTimeout = setTimeout(() => {
     videoControls.classList.remove("showing");
-  }, 3000);
-  controlsTimeout = setTimeout(hideControls, 3000);
+  }, 100);
+  controlsTimeout = setTimeout(hideControls, 100);
 };
 
 const handleEnded = () => {
@@ -115,6 +115,25 @@ const handleEnded = () => {
   });
 };
 
+const handleVideoClick = () => {
+  if (video.paused) {
+    video.play();
+  } else {
+    video.pause();
+  }
+};
+
+const handleKeyDown = (event) => {
+  const { keyCode } = event;
+  if (event.target!==textarea&& keyCode === 32) {
+    event.preventDefault();
+    handlePlay();
+  } else if (keyCode === 77) {
+    handleMute();
+  } else if (keyCode === 70) {
+    handleFullScreen();
+  }
+};
 
 playBtn.addEventListener("click",handlePlay);
 muteBtn.addEventListener("click",handleMute);
@@ -126,3 +145,5 @@ timeline.addEventListener("input", handleTimeLineChange);
 fullScreenBtn.addEventListener("click", handleFullScreen);
 video.addEventListener("mousemove", handleMouseMove);
 video.addEventListener("mouseleave", handleMouseLeave);
+video.addEventListener("click", handleVideoClick);
+document.addEventListener("keydown", handleKeyDown);

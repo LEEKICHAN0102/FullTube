@@ -266,12 +266,12 @@ form input:not(input[type=range])[type=submit]:hover {
 }
 
 #videoContainer {
-  width: 100%;
+  width: 80%;
   position: relative;
 }
 #videoContainer video {
   width: 100%;
-  height: 540px;
+  height: auto;
 }
 #videoContainer input[type=range] {
   width: 100%;
@@ -513,8 +513,12 @@ form label {
   font-size: large;
   padding: 10px;
 }
+.video__user-info .video__user-info-head button.clicked {
+  background-color: rgb(80, 152, 240);
+}
 .video__user-info .video__user-info-head button span {
-  margin-left: 10px;
+  text-align: center;
+  padding: 15px;
 }
 
 .video__user-info__metadata {

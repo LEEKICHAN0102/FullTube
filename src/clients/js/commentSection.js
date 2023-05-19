@@ -4,6 +4,7 @@ const deleteComment = document.querySelectorAll(".delete__comment");
 const videoLike=document.getElementById("videoLike");
 const subChannel=document.getElementById("videoSubscribe");
 
+
 const addComment = (text, id,owner) => {
   const videoComments = document.querySelector(".video__comments ul");
   const newComment = document.createElement("li");
@@ -71,10 +72,13 @@ const handleDelete=async(event)=>{
   }
 };
 
-const likeCounting=(likeCount)=>{
-  const countNumber=videoLike.querySelector("span");
-  countNumber.innerText=`좋아요 ${likeCount}`;
-}
+const likeCounting = (likeCount) => {
+  const countNumber = videoLike.querySelector("span");
+  if (videoLike.classList.contains("clicked")) {
+    videoLike.classList.remove("clicked");
+  }
+  countNumber.innerText = `좋아요 ${likeCount}`;
+};
 
 const handleLike=async()=>{
   const videoId=videoContainer.dataset.id;

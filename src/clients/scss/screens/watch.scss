@@ -26,8 +26,12 @@
     color:white;
     font-size: large;
     padding: 10px;
+    &.clicked {
+      background-color: rgb(80, 152, 240);
+    }
     span{
-      margin-left: 10px;
+      text-align: center;
+      padding: 15px;
     }
   }
 }

@@ -32,10 +32,10 @@ block content
                     span 좋아요 #{video.meta.rating.length}
             if String(video.owner._id)===String(loggedInUser._id)
                 div.video__change
-                    button 비디오 수정
-                        a(href=`/${video._id}/edit`)
-                    button 비디오 삭제
-                        a(href=`/${video._id}/delete`)
+                    a(href=`/video/${video._id}/edit`)
+                        button 비디오 수정
+                    a(href=`/video/${video._id}/delete`)
+                        button 비디오 삭제
     div.video__user-info__metadata
         span.views=`조회수 ${video.meta.views}`
         span.createdAt=video.createdAt

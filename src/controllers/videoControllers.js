@@ -63,13 +63,14 @@ export const postUploadVideo = async (req, res) => {
   const {
     user: { _id },
   } = req.session;
-  const { path: fileUrl } = req.file;
+  const { video,thumbnail } = req.files;
   const { title, description, hashtags } = req.body;
   try {
     const newVideo = await videoModel.create({
       title,
       description,
-      fileUrl,
+      fileUrl: video[0].path,
+      thumbnail:  thumbnail[0].path.replace(/[\\]/g, "/"),
       owner: _id,
       hashtags: videoModel.formatHashtags(hashtags),
     });
@@ -79,7 +80,7 @@ export const postUploadVideo = async (req, res) => {
     return res.redirect("/");
   } catch (error) {
     return res.status(400).render("upload", {
-      pageTitle: "Upload Video",
+      pageTitle: "영상 업로드",
       errorMessage: error._message,
     });
   }
@@ -134,6 +135,9 @@ export const createComment = async (req, res) => {
     body: { text },
     params: { id },
   } = req;
+
+  console.log(user);
+
   const video = await videoModel.findById(id);
   if (!video) {
     return res.sendStatus(404);
@@ -152,7 +156,7 @@ export const createComment = async (req, res) => {
   await video.save();
   userComment.comments.push(comment._id);
   await userComment.save();
-  return res.status(201).json({ newCommentId: comment._id });
+  return res.status(201).json({ newCommentId: comment._id,owner: userComment.owner });
 };
 
 export const deleteComment = async (req, res) => {

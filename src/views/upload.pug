@@ -6,6 +6,8 @@ block content
   form(method="POST",enctype="multipart/form-data")
     label(for="video") 업로드 할 MP4 영상
     input(id="video",type="file",name="video",accept="video/*",required)
+    label(for="thumbnail") 업로드 할 영상의 썸네일
+    input(id="thumbnail" ,name="thumbnail",type="file", accept="image/*", required)
     input(name="title",placeholder="영상 제목",required,type="text")
     input(name="description",placeholder="영상 설명",required,type="text")
     input(name="hashtags",placeholder="해시 태그(작성 시 , 표시를 기입해주세요)",required,type="text")

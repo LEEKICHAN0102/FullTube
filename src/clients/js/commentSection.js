@@ -11,7 +11,6 @@ const addComment = (text, id,owner) => {
   newComment.className = "video__comment";
   newComment.dataset.id = id;
   const userAvatar=document.createElement("img");
-  userAvatar.style.borderRadius="50";
   userAvatar.width="40";
   userAvatar.height="40";
   userAvatar.src = owner;
@@ -45,6 +44,7 @@ const handleSubmit = async (event) => {
     headers: {
       "Content-Type": "application/json",
     },
+    cache: "no-cache",
     body: JSON.stringify({ text }),
   });
 

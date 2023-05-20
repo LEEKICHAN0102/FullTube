@@ -8,6 +8,8 @@
     "url": "git+https://github.com/LEEKICHAN0102/FullTube.git"
   },
   "scripts": {
+    "start":"node build/init.js",
+    "build:server":"babel src -d build",
     "full": "nodemon",
     "assets": "webpack"
   },
@@ -30,7 +32,8 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.4",
+    "@babel/cli": "^7.21.5",
+    "@babel/core": "^7.21.8",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
     "babel-loader": "^9.1.2",

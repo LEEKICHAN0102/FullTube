@@ -101,11 +101,14 @@ const handleMouseMove = () => {
   controlsMovementTimeout = setTimeout(hideControls, 2000);
 };
 
-const handleMouseLeave = () => {
-  controlsTimeout = setTimeout(() => {
-    videoControls.classList.remove("showing");
-  }, 100);
-  controlsTimeout = setTimeout(hideControls, 100);
+const handleMouseLeave = (event) => {
+  const isMouseOverControls = event.relatedTarget.closest("#videoControls");
+  if (!isMouseOverControls) {
+    controlsTimeout = setTimeout(() => {
+      videoControls.classList.remove("showing");
+    }, 100);
+    controlsTimeout = setTimeout(hideControls, 100);
+  }
 };
 
 const handleEnded = () => {

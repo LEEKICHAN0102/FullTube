@@ -1,26 +1,30 @@
 header
-  a(href="/").header__logo
+  a.header__logo(href="/")
     i.fab.fa-youtube
-      span.header__name FullTube
-    ul
-      li 
-        a(href="/search")
+    span.header__name FullTube
+  ul
+    li
+      form.search__form(action="/search", method="GET")
+        input(name="keyword", placeholder="영상 검색", required, type="text")
+        button(type="submit")
           i.fas.fa-search
-      if loggedIn
-        li
-          a(href="/video/upload") 영상 업로드
-        li
-          a(href="/user/edit-profile") 프로필 수정
-        li
-          a(href="/user/logout") 로그아웃
-        li
-          a(href=`/user/${loggedInUser._id}`)
-            if !loggedInUser.avatarUrl
-                img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png",width="25px",height="25px")
-            else
-                img.header__avatar(src=`${loggedInUser.avatarUrl}`)
-      else
-        li
-          a(href="/login").header__btn 로그인
-        li
-          a(href="/join").header__btn 회원 가입
+  if loggedIn
+    ul
+      li
+        a(href="/video/upload") 영상 업로드
+      li
+        a(href="/user/edit-profile") 프로필 수정
+      li
+        a(href="/user/logout") 로그아웃
+      li
+        a(href=`/user/${loggedInUser._id}`)
+          if !loggedInUser.avatarUrl
+            img.header__avatar(src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png", width="25px", height="25px")
+          else
+            img.header__avatar(src=`${loggedInUser.avatarUrl}`)
+  else
+    ul
+      li
+        a(href="/login").header__btn 로그인
+      li
+        a(href="/join").header__btn 회원 가입

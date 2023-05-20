@@ -274,36 +274,32 @@ export const getEdit = (req, res) => {
   return res.render("edit-profile",{pageTitle:"프로필 수정"});
 };
 
+
 export const postEdit = async (req, res) => {
   const {
     session: {
-      user: { _id, avatarUrl },
+      user: { _id,avatarUrl },
     },
     body: { email, username, name },
     file,
   } = req;
   console.log(file);
-  const existUsername = await userModel.findOne({ username });
-  const existUserEmail = await userModel.findOne({ email });
-  if (existUsername._id != _id || existUserEmail._id != _id) {
-    return res.render("edit-Profile", {
-      pageTitle: "프로필 수정",
-      errorMessage: "이미 존재하는 E-mail 또는 닉네임 입니다.",
-    });
-  } else {
-    const updatedUser = await userModel.findByIdAndUpdate(
+  const existUser = await userModel.exists({$or:[{username},{email}] });
+  if(existUser){
+    return res.render("edit-profile",{pageTitle:"프로필 수정",errorMessage:"이미 존재하는 E-mail 또는 닉네임 입니다"})
+  }
+  const updatedUser = await userModel.findByIdAndUpdate(
       _id,
       {
-        avatarUrl: file ? file.path : avatarUrl,
         name,
         email,
         username,
+        avatarUrl: file ? file.path : avatarUrl,
       },
       { new: true }
     );
     req.session.user = updatedUser;
     return res.redirect("edit-profile");
-  }
 };
 
 export const getChangePassword = (req, res) => {

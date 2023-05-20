@@ -133,7 +133,7 @@ table {
 }
 
 header {
-  padding: 20px 50px;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -141,6 +141,8 @@ header {
 header .header__logo {
   color: #FF0000;
   font-size: 30px;
+  display: flex;
+  align-items: center;
 }
 header .header__logo .header__name {
   font-family: "League Gothic", sans-serif;
@@ -152,15 +154,14 @@ header ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 header ul li {
-  margin-left: 30px;
   font-size: 14px;
   font-weight: 600;
-  text-transform: uppercase;
-}
-header ul i {
-  font-size: 16px;
+  margin-left: 30px;
 }
 header .header__btn {
   background-color: white;
@@ -172,6 +173,34 @@ header .header__avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+header .header__search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  border-radius: 20px;
+  background-color: #f1f1f1;
+  padding: 5px;
+}
+header .header__search form.search__form {
+  display: flex;
+}
+header .header__search form.search__form input[name=keyword] {
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  background-color: #f1f1f1;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+header .header__search form.search__form input[name=keyword]::placeholder {
+  color: #999;
+}
+header .header__search form.search__form button[type=submit] {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 footer {
@@ -188,16 +217,26 @@ footer {
   background-color: ivory;
 }
 .video-mixin .video-mixin__data {
-  padding: 0px 15px;
+  padding: 0px 5px;
+  display: flex;
+}
+.video-mixin .video-mixin__data .meta-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  margin-top: 10px;
 }
 .video-mixin .video-mixin__data .video-mixin__title {
   font-size: 18px;
   display: block;
   margin-top: 10px;
+  margin-left: 10px;
 }
-.video-mixin .video-mixin__data .video-mixin__meta {
-  margin-top: 5px;
+.video-mixin .video-mixin__meta {
+  margin-left: 55px;
   font-size: 12px;
+  margin-top: -10px;
+  opacity: 0.7;
 }
 
 .empty__message {
@@ -225,17 +264,17 @@ footer {
   border-radius: 50%;
 }
 
-form {
+form:not(.search__form) {
   max-width: 420px;
   margin: 0 auto;
 }
-form:not(.search__form) {
+form:not(.search__form):not(.search__form) {
   padding: 30px;
   background-color: rgba(12, 12, 12, 0.7);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-form input:not(input[type=range]) {
+form:not(.search__form) input:not(input[type=range]) {
   all: unset;
   padding: 15px 20px;
   border-radius: 5px;
@@ -246,12 +285,12 @@ form input:not(input[type=range]) {
   color: white;
   width: 90%;
 }
-form input:not(input[type=range])[type=submit] {
+form:not(.search__form) input:not(input[type=range])[type=submit] {
   background-color: burlywood;
   color: black;
   transition: background-color 0.5s ease-in-out;
 }
-form input:not(input[type=range])[type=submit]:hover {
+form:not(.search__form) input:not(input[type=range])[type=submit]:hover {
   background-color: #f4e7d7;
 }
 
@@ -417,30 +456,28 @@ span.comment_CNT {
 }
 
 .search__form {
-  margin-bottom: 60px;
   display: flex;
   position: relative;
   align-items: center;
+  width: 450px;
 }
 .search__form input {
-  all: unset;
-  padding: 15px 20px;
-  border-radius: 5px;
+  padding: 10px 30px;
+  border-radius: 9999px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: black;
+  background-color: #f1f1f1;
   margin-bottom: 5px;
   font-size: 16px;
-  color: white;
+  color: #333;
   width: 90%;
 }
 .search__form button {
   all: unset;
-}
-.search__form button {
   position: absolute;
   right: 15px;
   font-size: 18px;
   background-color: rgba(0, 0, 0, 0);
+  color: black;
   text-align: center;
   cursor: pointer;
 }
@@ -466,6 +503,14 @@ span.comment_CNT {
 
 .video-grid {
   margin-top: 50px;
+}
+
+.edit__profile {
+  margin-left: 550px;
+  margin-bottom: 50px;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
 }
 
 form label {

@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 
-mongoose.connect(process.env.DB_URL,
-  options
-)
+mongoose.connect(process.env.DB_URL)
   .then(()=>console.log('connected'))
   .catch(e=>console.log(e));
 

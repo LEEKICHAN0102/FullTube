@@ -338,7 +338,7 @@ export const deleteUser = (req, res) => {
 export const seeUser = async (req, res) => {
   const { id } = req.params;
   const user = await userModel.findById(id).populate({
-    path: "video",
+    path: "videos",
     populate: {
       path: "owner",
       model: "User",

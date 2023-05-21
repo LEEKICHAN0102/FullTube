@@ -8,7 +8,7 @@ import app from "./server";
 const PORT = process.env.PORT || 7777;
 
 const handleListening = () => {
-  console.log("Server Listening to localhost:7777 🔥🔥");
+  console.log(`Server Listening to localhost:${PORT} 🔥🔥`);
 };
 
 app.listen(PORT, handleListening);
